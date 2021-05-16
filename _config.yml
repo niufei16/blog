@@ -108,10 +108,15 @@ theme_config:
     mail: mailto:1013071086@qq.com
   nav:
     home: /
-    about: /about/
+    tag: /tags/
     articles: /archives/
     projects: https://gitee.com/niumew/blog.git
-  rss: atom.xml
+    about: /about/
+  # tags_overview: true
+  rss: true
+  copyright:
+    start_year: 2020
+    end_year:
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
