@@ -113,6 +113,7 @@ theme_config:
     projects: https://gitee.com/niumew/blog.git
     about: /about/
   # tags_overview: true
+  highlight: github-gist
   rss: true
   copyright:
     start_year: 2020
