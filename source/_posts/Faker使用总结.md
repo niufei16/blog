@@ -69,28 +69,31 @@ $ composer require fzaninotto/faker
 ### Address
 > Faker\Provider\Address(zh_CN)
 ```
-cityPrefix                          // 'Lake'
-secondaryAddress                    // 'Suite 961'
-state                               // 'NewMexico'
-stateAbbr                           // 'OH'
-citySuffix                          // 'borough'
-streetSuffix                        // 'Keys'
-buildingNumber                      // '484'
-city                                // 'West Judge'
-streetName                          // 'Keegan Trail'
-streetAddress                       // '439 Karley Loaf Suite 897'
-postcode                            // '17916'
-address                             // '8888 Cummings Vista Apt. 101, Susanbury, NY 95473'
-country                             // 'Falkland Islands (Malvinas)'
-latitude($min = -90, $max = 90)     // 77.147489
-longitude($min = -180, $max = 180)  // 86.211205
+城市: city                                // 'West Judge'
+省: state                           // 'NewMexico'
+省简称: stateAbbr                    // 'OH'
+区: area                            // 东丽区
+邮编: postcode                            // '17916'
+城市+区: address                             // '8888 Cummings Vista Apt. 101, Susanbury, NY 95473'
+国家: country                             // 'Falkland Islands (Malvinas)'
+# 以下不支持zh_CN
+*cityPrefix                          // 'Lake'
+*secondaryAddress                    // 'Suite 961'
+城市后缀: citySuffix                          // 'borough'
+街道后缀: streetSuffix                        // 'Keys'
+建筑物号码: buildingNumber                      // '484'
+街道名: streetName                          // 'Keegan Trail'
+街道地址: streetAddress                       // '439 Karley Loaf Suite 897'
+纬度: latitude($min = -90, $max = 90)     // 77.147489
+经度: longitude($min = -180, $max = 180)  // 86.211205
+经纬度: localCoordinates    // array('77.147489', '86.211205')
 ```
 ### PhoneNumber
 > Faker\Provider\PhoneNumber(zh_CN)
 ```
 手机号: phoneNumber             // '201-886-0269 x3767'
 *tollFreePhoneNumber     // '(888) 937-7238'
-e164电话号: e164PhoneNumber     // '+27113456789'
+E.164号码: e164PhoneNumber     // '+27113456789'
 IMEI: imei
 ```
 ### Company
@@ -137,45 +140,51 @@ timezone                              // 'Europe/Paris'
 ### Internet
 > Faker\Provider\Internet
 ```
-email                   // 'tkshlerin@collins.com'
-safeEmail               // 'king.alford@example.org'
-freeEmail               // 'bradley72@gmail.com'
-companyEmail            // 'russel.durward@mcdermott.org'
-freeEmailDomain         // 'yahoo.com'
-safeEmailDomain         // 'example.org'
-userName                // 'wade55'
-password                // 'k&|X+a45*2['
-domainName              // 'wolffdeckow.net'
-domainWord              // 'feeney'
-tld                     // 'biz'
-url                     // 'http://www.skilesdonnelly.biz/aut-accusantium-ut-architecto-sit-et.html'
-slug                    // 'aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum'
-ipv4                    // '109.133.32.252'
-localIpv4               // '10.242.58.8'
-ipv6                    // '8e65:933d:22ee:a232:f1c1:2741:1f10:117c'
-macAddress              // '43:85:B7:08:10:CA'
+邮箱: email                   // 'tkshlerin@collins.com'
+安全邮箱: safeEmail               // 'king.alford@example.org'
+免费邮箱: freeEmail               // 'bradley72@gmail.com'
+公司邮箱: companyEmail            // 'russel.durward@mcdermott.org'
+免费邮箱域名: freeEmailDomain         // 'yahoo.com'
+安全邮箱域名: safeEmailDomain         // 'example.org'
+用户名: userName                // 'wade55'
+密码: password                // 'k&|X+a45*2['
+域名: domainName              // 'wolffdeckow.net'
+域名名称: domainWord              // 'feeney'
+顶级域: tld                     // 'biz'
+网址: url                     // 'http://www.skilesdonnelly.biz/aut-accusantium-ut-architecto-sit-et.html'
+slug: slug                    // 'aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum'
+ipv4(0.0.0.0-255.255.255.255): ipv4                    // '109.133.32.252'
+[10.0.0.0, 10.255.255.255] or [192.168.0.0, 192.168.255.255]: localIpv4               // '10.242.58.8'
+ipv6: ipv6                    // '8e65:933d:22ee:a232:f1c1:2741:1f10:117c'
+Mac地址: macAddress              // '43:85:B7:08:10:CA'
 ```
 ### UserAgent
 > Faker\Provider\UserAgent
 ```
-userAgent              // 'Mozilla/5.0 (Windows CE) AppleWebKit/5350 (KHTML, like Gecko) Chrome/13.0.888.0 Safari/5350'
-chrome                 // 'Mozilla/5.0 (Macintosh; PPC Mac OS X 10_6_5) AppleWebKit/5312 (KHTML, like Gecko) Chrome/14.0.894.0 Safari/5312'
-firefox                // 'Mozilla/5.0 (X11; Linuxi686; rv:7.0) Gecko/20101231 Firefox/3.6'
-safari                 // 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_7_1 rv:3.0; en-US) AppleWebKit/534.11.3 (KHTML, like Gecko) Version/4.0 Safari/534.11.3'
-opera                  // 'Opera/8.25 (Windows NT 5.1; en-US) Presto/2.9.188 Version/10.00'
-internetExplorer       // 'Mozilla/5.0 (compatible; MSIE 7.0; Windows 98; Win 9x 4.90; Trident/3.0)'
+用户代理: userAgent              // 'Mozilla/5.0 (Windows CE) AppleWebKit/5350 (KHTML, like Gecko) Chrome/13.0.888.0 Safari/5350'
+谷歌浏览器: chrome                 // 'Mozilla/5.0 (Macintosh; PPC Mac OS X 10_6_5) AppleWebKit/5312 (KHTML, like Gecko) Chrome/14.0.894.0 Safari/5312'
+火狐浏览器: firefox                // 'Mozilla/5.0 (X11; Linuxi686; rv:7.0) Gecko/20101231 Firefox/3.6'
+safari浏览器: safari                 // 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_7_1 rv:3.0; en-US) AppleWebKit/534.11.3 (KHTML, like Gecko) Version/4.0 Safari/534.11.3'
+opera浏览器: opera                  // 'Opera/8.25 (Windows NT 5.1; en-US) Presto/2.9.188 Version/10.00'
+IE: internetExplorer       // 'Mozilla/5.0 (compatible; MSIE 7.0; Windows 98; Win 9x 4.90; Trident/3.0)'
+Mac processor: macProcessor           // 'Intel', 'PPC', 'U; Intel', 'U; PPC'
+Linux processor: linuxProcessor       // 'i686', 'x86_64'
+windows系统版本: windowsPlatformToken  // Windows NT 6.2
+Mac系统版本: macPlatformToken  // Macintosh; Intel Mac OS X 10_6_3
+Linux系统版本: linuxPlatformToken // X11; Linux x86_64
 ```
 ### Payment
 > Faker\Provider\Payment
 ```
-creditCardType          // 'MasterCard'
-creditCardNumber        // '4485480221084675'
-creditCardExpirationDate // 04/13
-creditCardExpirationDateString // '04/13'
-creditCardDetails       // array('MasterCard', '4485480221084675', 'Aleksander Nowak', '04/13')
+银行（仅zh_CN）: bank      // 中国建设银行
+信用卡类型: creditCardType          // 'MasterCard'
+信用卡卡号: creditCardNumber        // '4485480221084675'
+信用卡截止日期: creditCardExpirationDate // 04/13
+信用卡截止日期（字符串）: creditCardExpirationDateString // '04/13'
+信用卡基本信息 array(类型,卡号,申请人姓名,截止日期): creditCardDetails       // array('MasterCard', '4485480221084675', 'Aleksander Nowak', '04/13')
 // Generates a random IBAN. Set $countryCode to null for a random country
-iban($countryCode)      // 'IT31A8497112740YZ575DJ28BP4'
-swiftBicNumber          // 'RZTIAT22263'
+IBAN: iban($countryCode)      // 'IT31A8497112740YZ575DJ28BP4'
+SWIFT/BIC: swiftBicNumber          // 'RZTIAT22263'
 ```
 ### Color
 > Faker\Provider\Color
@@ -183,9 +192,11 @@ swiftBicNumber          // 'RZTIAT22263'
 safeColorName、colorName支持zh_CN
 ```
 hexcolor               // '#fa3cc2'
+*safeHexColor          // '#ff0044'
 rgbcolor               // '0,255,122'
 rgbColorAsArray        // array(0,255,122)
 rgbCssColor            // 'rgb(0,255,122)'
+*rgbaCssColor           // 'rgba(0,255,122,0.8)'
 safeColorName          // 'fuchsia'
 colorName              // 'Gainsbor'
 hslColor               // '340,50,20'
@@ -194,8 +205,8 @@ hslColorAsArray        // array(340,50,20)
 ### File
 > Faker\Provider\File
 ```
-fileExtension          // 'avi'
-mimeType               // 'video/x-msvideo'
+文件扩展名: fileExtension          // 'avi'
+文件类型（媒体类型）： mimeType               // 'video/x-msvideo'
 // Copy a random file from the source to the target directory and returns the fullpath or filename
 file($sourceDir = '/tmp', $targetDir = '/tmp') // '/path/to/targetDir/13b73edae8443990be1aa8f1a483bc27.jpg'
 file($sourceDir, $targetDir, false) // '13b73edae8443990be1aa8f1a483bc27.jpg'
