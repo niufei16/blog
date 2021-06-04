@@ -12,7 +12,7 @@ tags:
 $ php spark make:model UserModel
 ```
 app/Models/UserModel.php
-```
+```php
 protected $allowedFields        = [
   	'name',
 	'email',
@@ -67,7 +67,7 @@ protected function hashPassword(array $data)
 $ php spark make:migration Users
 ```
 app/Database/Migrations/xxx_Users.php
-```
+```php
 public function up()
 {
 	$this->forge->addField([
@@ -124,7 +124,7 @@ $ php spark migrate
 $ php spark make:seeder UsersTableSeeder
 ```
 app/Database/Seeds/UsersTableSeeder
-```
+```php
 public function run()
 {
     // 清空
@@ -150,7 +150,7 @@ public function run()
 ## 注册
 ### 路由
 app/Config/Routes.php
-```
+```php
 $routes->group('', ['namespace' => 'App\Controllers' ], function ($routes) {
   // register
   $routes->get('register', 'Auth\RegisterController::register', ['as' => 'register']);
@@ -162,7 +162,7 @@ $routes->group('', ['namespace' => 'App\Controllers' ], function ($routes) {
 $ php spark make:controller Auth/RegisterController
 ```
 app/Controllers/Auth/RegisterController.php
-```
+```php
 public function register()
 {
 	return view('auth/register');
@@ -192,7 +192,7 @@ public function attemptRegister()
 ```
 ### 创建页面
 app/Views/auth/register
-```
+```php
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('main') ?>
 <div class="main d-flex justify-content-center align-items-center h-100">
@@ -235,7 +235,7 @@ app/Views/auth/register
 <?= $this->endSection() ?>
 ```
 app/Views/components/messages.php
-```
+```php
 <?php if (session()->has('errors')) : ?>
   <div class="alert alert-danger w-100" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -268,7 +268,7 @@ app/Views/components/messages.php
 - 插入前的密码加密
 
 ## 提交
-```
+```shell
 $ git add -A
 $ git commit -m "用户注册"
 ```

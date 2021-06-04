@@ -82,7 +82,7 @@ $ tree public
 ```
 测试一下
 app/Views/welcome_message.php
-```
+```php
 + <link rel="stylesheet" href="<?= base_url('vendor/bootstrap/css/bootstrap.min.css') ?>">
 + <link rel="stylesheet" href="<?= base_url('vendor/fontawesome-free/css/all.css') ?>">
 ...
@@ -108,7 +108,7 @@ app/Views/welcome_message.php
 ```
 在 app/Views/layouts 下新建文件 app.php 
 app/Views/layouts/app.php
-```
+```html
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -153,7 +153,7 @@ app/Views/layouts/app.php
 ```
 在 app/Views/layouts 下新建文件 footer.php 
 app/Views/layouts/footer.php
-```
+```php
 <footer>
   <ul class="nav justify-content-center bg-white py-5">
     <li class="nav-item">
@@ -173,7 +173,7 @@ app/Views/layouts/footer.php
 ```
 在 app/Views/layouts 下新建文件 navbar.php 
 app/Views/layouts/navbar.php，
-```
+```php
 <nav class="navbar navbar-expand-md theme-bg">
   <div class="container">
     <a class="navbar-brand logo-brand" href="/">
@@ -206,7 +206,7 @@ app/Views/layouts/navbar.php，
 </nav>
 ```
 删除 app/Views/welcome_message.php，新建 app/Views/home.php
-```
+```php
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('main') ?>
 <h1>首页</h1>
@@ -216,7 +216,7 @@ app/Views/layouts/navbar.php，
 ![](2.3.png)
 
 ## 提交
-```
+```shell
 $ git add -A
 $ git commit -m "设置 && 页面布局"
 ```

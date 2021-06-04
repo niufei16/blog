@@ -9,7 +9,7 @@ tags:
 ## 登录
 ### 路由
 app/Config/Routes.php
-```
+```php
   $routes->post('register', 'Auth\RegisterController::attemptRegister', ['as' => 'register']);
 
   // login
@@ -19,7 +19,7 @@ app/Config/Routes.php
 ```
 ### model
 app/Models/UserModel.php
-```
+```php
 protected $dynamicRules = [
  'register' => [
     ...
@@ -41,7 +41,7 @@ protected $dynamicRules = [
 $ php spark make:controller Auth/LoginController
 ```
 app/Controllers/Auth/LoginController.php
-```
+```php
 protected $session;
 
 public function __construct()
@@ -84,7 +84,7 @@ public function attemptLogin()
 ```
 ### 页面
 app/Views/auth/login.php
-```
+```php
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('main') ?>
 <div class="main d-flex justify-content-center align-items-center h-100">
@@ -122,7 +122,7 @@ app/Views/auth/login.php
 <?= $this->endSection() ?>
 ```
 app/View/layouts/navbar.php
-```
+```php
 <ul class="navbar-nav mr-auto">
   <li class="nav-item">
     <a class="nav-link text-white" href="/">首页</a>
@@ -165,7 +165,7 @@ app/View/layouts/navbar.php
 ## 登出
 ### 路由
 app/Config/Routes.php
-```
+```php
   $routes->post('login', 'Auth\LoginController::attemptLogin', ['as' => 'login']);
 
   // logout
@@ -173,7 +173,7 @@ app/Config/Routes.php
 ```
 ### controller
 app/Controllers/Auth/LoginController.php
-```
+```php
 public function logout()
 {
   $this->session->remove(['isLoggedIn', 'blog_user']);
@@ -184,7 +184,7 @@ public function logout()
 ## 细节完善
 用户登录之后不能进行注册和登录操作
 app/Controllers/Auth/RegisterController.php
-```
+```php
 +protected $session;
 
 +public function __construct()
@@ -203,7 +203,7 @@ public function register()
 }
 ```
 app/Controllers/Auth/LoginController.php
-```
+```php
 public function login()
 {
 +  if ($this->session->isLoggedIn)
@@ -215,7 +215,7 @@ public function login()
 }
 ```
 app/Views/components/messages.php
-```
+```php
 <?php if (session()->has('info')) : ?>
   <div class="alert alert-info w-100" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -231,7 +231,7 @@ app/Views/components/messages.php
 ![](4.4.png)
 
 ## 提交
-```
+```shell
 $ git add -A
 $ git commit -m "用户登录"
 ```
