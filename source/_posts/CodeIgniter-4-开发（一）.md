@@ -5,6 +5,7 @@ tags:
 	- CodeIgniter
 	- php
 ---
+> 安装与hello,ci
 ## 安装应用
 首先，在 [CodeIgniter](https://codeigniter.com/download) or [CodeIgniter 中国](https://codeigniter.org.cn/) 官网下载框架，解压到 ci 文件夹，进入该文件夹，打开命令行，输入下面命令：
 ```shell

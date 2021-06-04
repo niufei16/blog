@@ -5,6 +5,7 @@ tags:
 	- CodeIgniter
 	- php
 ---
+> 一些设置、下载用到的库和基础页面
 ## 基本设置
 ### 代码风格
 新建 .editorconfig
