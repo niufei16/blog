@@ -98,6 +98,7 @@ app/Views/welcome_message.php
 访问 localhost:8080
 ![](2.2.png)
 一切顺利。
+
 ### 页面
 在 app/Views 下新建文件夹 auth、components、layouts
 ```
@@ -220,3 +221,4 @@ app/Views/layouts/navbar.php，
 $ git add -A
 $ git commit -m "设置 && 页面布局"
 ```
+
