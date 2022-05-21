@@ -3,7 +3,7 @@
 ### install
  - 安装**niuf**
 
-   `$ git clone https://gitee.com/niumew/blog.git`
+   `$ git clone https://github.com/niufei16/blog.git`
 
  - 安装Theme **cactus**
 
