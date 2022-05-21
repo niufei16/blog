@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="依据v1.9.2版本  install1$ composer require fzaninotto&#x2F;faker 说明*号备注的方法在该版本里应该是没有了 用法Base Faker\Provider\Base  1234567891011121314151617181920212223240-9之间的随机整数： randomDigit                    &#x2F;&#x2F; 71-9之间除指定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Faker 使用总结">
+<meta property="og:url" content="https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="niuf">
+<meta property="og:description" content="依据v1.9.2版本  install1$ composer require fzaninotto&#x2F;faker 说明*号备注的方法在该版本里应该是没有了 用法Base Faker\Provider\Base  1234567891011121314151617181920212223240-9之间的随机整数： randomDigit                    &#x2F;&#x2F; 71-9之间除指定">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-21T16:48:47.000Z">
+<meta property="article:modified_time" content="2022-05-21T08:31:18.903Z">
+<meta property="article:author" content="niuf">
+<meta property="article:tag" content="faker">
+<meta property="article:tag" content="laravel">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Faker 使用总结</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/blog/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/blog/true" title="niuf" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/tags/">标签</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/niufei16/blog.git">项目</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/blog/2021/06/04/smtp4dev-win10-%E4%B8%8B-CodeIgniter4-%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%E7%9A%84%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&text=Faker 使用总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&is_video=false&description=Faker 使用总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Faker 使用总结&body=Check out this article: https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&name=Faker 使用总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&t=Faker 使用总结"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#install"><span class="toc-number">1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Base"><span class="toc-number">3.1.</span> <span class="toc-text">Base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lorem"><span class="toc-number">3.2.</span> <span class="toc-text">Lorem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Person"><span class="toc-number">3.3.</span> <span class="toc-text">Person</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Address"><span class="toc-number">3.4.</span> <span class="toc-text">Address</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PhoneNumber"><span class="toc-number">3.5.</span> <span class="toc-text">PhoneNumber</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Company"><span class="toc-number">3.6.</span> <span class="toc-text">Company</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Text"><span class="toc-number">3.7.</span> <span class="toc-text">Text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DateTime"><span class="toc-number">3.8.</span> <span class="toc-text">DateTime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Internet"><span class="toc-number">3.9.</span> <span class="toc-text">Internet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UserAgent"><span class="toc-number">3.10.</span> <span class="toc-text">UserAgent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Payment"><span class="toc-number">3.11.</span> <span class="toc-text">Payment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color"><span class="toc-number">3.12.</span> <span class="toc-text">Color</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File"><span class="toc-number">3.13.</span> <span class="toc-text">File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image"><span class="toc-number">3.14.</span> <span class="toc-text">Image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Uuid"><span class="toc-number">3.15.</span> <span class="toc-text">Uuid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Barcode"><span class="toc-number">3.16.</span> <span class="toc-text">Barcode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Miscellaneous"><span class="toc-number">3.17.</span> <span class="toc-text">Miscellaneous</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Biased"><span class="toc-number">3.18.</span> <span class="toc-text">Biased</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HtmlLorem"><span class="toc-number">3.19.</span> <span class="toc-text">HtmlLorem</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Faker 使用总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">niuf</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-21T16:48:47.000Z" itemprop="datePublished">2021-05-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/blog/tags/faker/" rel="tag">faker</a>, <a class="tag-link-link" href="/blog/tags/laravel/" rel="tag">laravel</a>, <a class="tag-link-link" href="/blog/tags/php/" rel="tag">php</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p>依据v1.9.2版本</p>
+</blockquote>
+<h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ composer require fzaninotto/faker</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>*号备注的方法在该版本里应该是没有了</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h3><blockquote>
+<p>Faker\Provider\Base</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">0-9之间的随机整数： randomDigit                    // 7</span><br><span class="line">1-9之间除指定外的随机整数： randomDigitNot(5)       // 0, 1, 2, 3, 4, 6, 7, 8, or 9</span><br><span class="line">1-9之间的随机整数： randomDigitNotNull             // 5</span><br><span class="line">非零随机数: randomNumber($nbDigits = NULL, $strict = false) // 79907610</span><br><span class="line">随机浮点数: randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL) // 48.8932</span><br><span class="line">区间内的随机数: numberBetween($min = 1000, $max = 9000) // 8567</span><br><span class="line">返回传入值: passthrough(1)     // 1</span><br><span class="line">随机字母: randomLetter   // &#x27;b&#x27;</span><br><span class="line">随机Ascii: randomAscii   // !</span><br><span class="line">// returns randomly ordered subsequence of a provided array</span><br><span class="line">随机返回数组中的几个， 返回数组: randomElements($array = array (&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;), $count = 1) // array(&#x27;c&#x27;)</span><br><span class="line">随机返回数组中的1个，调用randomElements(, 1), 返回[0]: randomElement($array = array (&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;)) // &#x27;b&#x27;</span><br><span class="line">随机返回数组的key: randomKey</span><br><span class="line">打乱数组或者字符: shuffle(&#x27;hello, world&#x27;) // &#x27;rlo,h eoldlw&#x27;</span><br><span class="line">		shuffle(array(1, 2, 3)) // array(2, 1, 3)</span><br><span class="line">打乱数组: shuffleArray</span><br><span class="line">打乱字符: shuffleString</span><br><span class="line">将#替换为0-9随机数字，将%替换为1-9随机数字: numerify(&#x27;Hello ###&#x27;) // &#x27;Hello 609&#x27;</span><br><span class="line">将?替换为随机字母: lexify(&#x27;Hello ???&#x27;) // &#x27;Hello wgt&#x27;</span><br><span class="line">将#、?替换为随机数字和字母，将*替换为随机数字或者字母: bothify(&#x27;Hello ##??&#x27;) // &#x27;Hello 42jz&#x27;</span><br><span class="line">将*替换为随机Ascii: asciify(&#x27;Hello ***&#x27;) // &#x27;Hello R6+&#x27;</span><br><span class="line">正则匹配生成: regexify(&#x27;[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]&#123;2,4&#125;&#x27;); // sm0@y8k96a.ej</span><br><span class="line">转小写，mb_string优先: toLower()</span><br><span class="line">转大写，mb_string优先: toUpper</span><br></pre></td></tr></table></figure>
+<h3 id="Lorem"><a href="#Lorem" class="headerlink" title="Lorem"></a>Lorem</h3><blockquote>
+<p>Faker\Provider\Lorem</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">单词: word                                             // &#x27;aut&#x27;</span><br><span class="line">默认为array单词组; true时，返回空格连接的string: words($nb = 3, $asText = false)     // array(&#x27;porro&#x27;, &#x27;sed&#x27;, &#x27;magni&#x27;)</span><br><span class="line">句子: sentence($nbWords = 6, $variableNbWords = true)  // &#x27;Sit vitae voluptas sint non voluptates.&#x27;</span><br><span class="line">默认为array句子组; true时，返回空格连接的string: sentences($nb = 3, $asText = false)              // array(&#x27;Optio quos qui illo error.&#x27;, &#x27;Laborum vero a officia id corporis.&#x27;, &#x27;Saepe provident esse hic eligendi.&#x27;)</span><br><span class="line">段落: paragraph($nbSentences = 3, $variableNbSentences = true) // &#x27;Ut ab voluptas sed a nam. Sint autem inventore aut officia aut aut blanditiis. Ducimus eos odit amet et est ut eum.&#x27;</span><br><span class="line">默认为array段落组; true时，返回\n\n连接的string: paragraphs($nb = 3, $asText = false)             // array(&#x27;Quidem ut sunt et quidem est accusamus aut. Fuga est placeat rerum ut. Enim ex eveniet facere sunt.&#x27;, &#x27;Aut nam et eum architecto fugit repellendus illo. Qui ex esse veritatis.&#x27;, &#x27;Possimus omnis aut incidunt sunt. Asperiores incidunt iure sequi cum culpa rem. Rerum exercitationem est rem.&#x27;)</span><br><span class="line">文本内容: text($maxNbChars = 200)                          // &#x27;Fuga totam reiciendis qui architecto fugiat nemo. Consequatur recusandae qui cupiditate eos quod.&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Person"><a href="#Person" class="headerlink" title="Person"></a>Person</h3><blockquote>
+<p>Faker\Provider\Person(zh_CN)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">称谓: title($gender = null|&#x27;male&#x27;|&#x27;female&#x27;)     // &#x27;Ms.&#x27;</span><br><span class="line">男称谓: titleMale                                 // &#x27;Mr.&#x27;</span><br><span class="line">女称谓: titleFemale                               // &#x27;Ms.&#x27;</span><br><span class="line">*suffix                                    // &#x27;Jr.&#x27;</span><br><span class="line">名字: name($gender = null|&#x27;male&#x27;|&#x27;female&#x27;)      // &#x27;Dr. Zane Stroman&#x27;</span><br><span class="line">名: firstName($gender = null|&#x27;male&#x27;|&#x27;female&#x27;) // &#x27;Maynard&#x27;</span><br><span class="line">男名: firstNameMale                             // &#x27;Maynard&#x27;</span><br><span class="line">女名: firstNameFemale                           // &#x27;Rachel&#x27;</span><br><span class="line">姓: lastName                                  // &#x27;Zulauf&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Address"><a href="#Address" class="headerlink" title="Address"></a>Address</h3><blockquote>
+<p>Faker\Provider\Address(zh_CN)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">城市: city                                // &#x27;West Judge&#x27;</span><br><span class="line">省: state                           // &#x27;NewMexico&#x27;</span><br><span class="line">省简称: stateAbbr                    // &#x27;OH&#x27;</span><br><span class="line">区: area                            // 东丽区</span><br><span class="line">邮编: postcode                            // &#x27;17916&#x27;</span><br><span class="line">城市+区: address                             // &#x27;8888 Cummings Vista Apt. 101, Susanbury, NY 95473&#x27;</span><br><span class="line">国家: country                             // &#x27;Falkland Islands (Malvinas)&#x27;</span><br><span class="line"># 以下不支持zh_CN</span><br><span class="line">*cityPrefix                          // &#x27;Lake&#x27;</span><br><span class="line">*secondaryAddress                    // &#x27;Suite 961&#x27;</span><br><span class="line">城市后缀: citySuffix                          // &#x27;borough&#x27;</span><br><span class="line">街道后缀: streetSuffix                        // &#x27;Keys&#x27;</span><br><span class="line">建筑物号码: buildingNumber                      // &#x27;484&#x27;</span><br><span class="line">街道名: streetName                          // &#x27;Keegan Trail&#x27;</span><br><span class="line">街道地址: streetAddress                       // &#x27;439 Karley Loaf Suite 897&#x27;</span><br><span class="line">纬度: latitude($min = -90, $max = 90)     // 77.147489</span><br><span class="line">经度: longitude($min = -180, $max = 180)  // 86.211205</span><br><span class="line">经纬度: localCoordinates    // array(&#x27;77.147489&#x27;, &#x27;86.211205&#x27;)</span><br></pre></td></tr></table></figure>
+<h3 id="PhoneNumber"><a href="#PhoneNumber" class="headerlink" title="PhoneNumber"></a>PhoneNumber</h3><blockquote>
+<p>Faker\Provider\PhoneNumber(zh_CN)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">手机号: phoneNumber             // &#x27;201-886-0269 x3767&#x27;</span><br><span class="line">*tollFreePhoneNumber     // &#x27;(888) 937-7238&#x27;</span><br><span class="line">E.164号码: e164PhoneNumber     // &#x27;+27113456789&#x27;</span><br><span class="line">IMEI: imei</span><br></pre></td></tr></table></figure>
+<h3 id="Company"><a href="#Company" class="headerlink" title="Company"></a>Company</h3><blockquote>
+<p>Faker\Provider\Company(zh_CN)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">广告短语: catchPhrase             // &#x27;Monitored regional contingency&#x27;</span><br><span class="line">*bs                      // &#x27;e-enable robust architectures&#x27;</span><br><span class="line">公司: company                 // &#x27;Bogan-Treutel&#x27;</span><br><span class="line">公司前缀: companyPrefix</span><br><span class="line">公司后缀: companySuffix           // &#x27;and Sons&#x27;</span><br><span class="line">工作名称: jobTitle                // &#x27;Cashier&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h3><blockquote>
+<p>Faker\Provider\Text</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">文本内容: realText($maxNbChars = 200, $indexSize = 2) // &quot;And yet I wish you could manage it?) &#x27;And what are they made of?&#x27; Alice asked in a shrill, passionate voice. &#x27;Would YOU like cats if you were never even spoke to Time!&#x27; &#x27;Perhaps not,&#x27; Alice replied.&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="DateTime"><a href="#DateTime" class="headerlink" title="DateTime"></a>DateTime</h3><blockquote>
+<p>Faker\Provider\DateTime</p>
+</blockquote>
+<p>dayOfWeek()、monthName()支持zh_CN</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">unixTime($max = &#x27;now&#x27;)                // 58781813</span><br><span class="line">dateTime($max = &#x27;now&#x27;, $timezone = null) // DateTime(&#x27;2008-04-25 08:37:17&#x27;, &#x27;UTC&#x27;)</span><br><span class="line">dateTimeAD($max = &#x27;now&#x27;, $timezone = null) // DateTime(&#x27;1800-04-29 20:38:49&#x27;, &#x27;Europe/Paris&#x27;)</span><br><span class="line">iso8601($max = &#x27;now&#x27;)                 // &#x27;1978-12-09T10:10:29+0000&#x27;</span><br><span class="line">date($format = &#x27;Y-m-d&#x27;, $max = &#x27;now&#x27;) // &#x27;1979-06-09&#x27;</span><br><span class="line">time($format = &#x27;H:i:s&#x27;, $max = &#x27;now&#x27;) // &#x27;20:49:42&#x27;</span><br><span class="line">dateTimeBetween($startDate = &#x27;-30 years&#x27;, $endDate = &#x27;now&#x27;, $timezone = null) // DateTime(&#x27;2003-03-15 02:00:49&#x27;, &#x27;Africa/Lagos&#x27;)</span><br><span class="line">dateTimeInInterval($startDate = &#x27;-30 years&#x27;, $interval = &#x27;+ 5 days&#x27;, $timezone = null) // DateTime(&#x27;2003-03-15 02:00:49&#x27;, &#x27;Antartica/Vostok&#x27;)</span><br><span class="line">dateTimeThisCentury($max = &#x27;now&#x27;, $timezone = null)     // DateTime(&#x27;1915-05-30 19:28:21&#x27;, &#x27;UTC&#x27;)</span><br><span class="line">dateTimeThisDecade($max = &#x27;now&#x27;, $timezone = null)      // DateTime(&#x27;2007-05-29 22:30:48&#x27;, &#x27;Europe/Paris&#x27;)</span><br><span class="line">dateTimeThisYear($max = &#x27;now&#x27;, $timezone = null)        // DateTime(&#x27;2011-02-27 20:52:14&#x27;, &#x27;Africa/Lagos&#x27;)</span><br><span class="line">dateTimeThisMonth($max = &#x27;now&#x27;, $timezone = null)       // DateTime(&#x27;2011-10-23 13:46:23&#x27;, &#x27;Antarctica/Vostok&#x27;)</span><br><span class="line">amPm($max = &#x27;now&#x27;)                    // &#x27;pm&#x27;</span><br><span class="line">dayOfMonth($max = &#x27;now&#x27;)              // &#x27;04&#x27;</span><br><span class="line">dayOfWeek($max = &#x27;now&#x27;)               // &#x27;Friday&#x27;</span><br><span class="line">month($max = &#x27;now&#x27;)                   // &#x27;06&#x27;</span><br><span class="line">monthName($max = &#x27;now&#x27;)               // &#x27;January&#x27;</span><br><span class="line">year($max = &#x27;now&#x27;)                    // &#x27;1993&#x27;</span><br><span class="line">century                               // &#x27;VI&#x27;</span><br><span class="line">timezone                              // &#x27;Europe/Paris&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Internet"><a href="#Internet" class="headerlink" title="Internet"></a>Internet</h3><blockquote>
+<p>Faker\Provider\Internet</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">邮箱: email                   // &#x27;tkshlerin@collins.com&#x27;</span><br><span class="line">安全邮箱: safeEmail               // &#x27;king.alford@example.org&#x27;</span><br><span class="line">免费邮箱: freeEmail               // &#x27;bradley72@gmail.com&#x27;</span><br><span class="line">公司邮箱: companyEmail            // &#x27;russel.durward@mcdermott.org&#x27;</span><br><span class="line">免费邮箱域名: freeEmailDomain         // &#x27;yahoo.com&#x27;</span><br><span class="line">安全邮箱域名: safeEmailDomain         // &#x27;example.org&#x27;</span><br><span class="line">用户名: userName                // &#x27;wade55&#x27;</span><br><span class="line">密码: password                // &#x27;k&amp;|X+a45*2[&#x27;</span><br><span class="line">域名: domainName              // &#x27;wolffdeckow.net&#x27;</span><br><span class="line">域名名称: domainWord              // &#x27;feeney&#x27;</span><br><span class="line">顶级域: tld                     // &#x27;biz&#x27;</span><br><span class="line">网址: url                     // &#x27;http://www.skilesdonnelly.biz/aut-accusantium-ut-architecto-sit-et.html&#x27;</span><br><span class="line">slug: slug                    // &#x27;aut-repellat-commodi-vel-itaque-nihil-id-saepe-nostrum&#x27;</span><br><span class="line">ipv4(0.0.0.0-255.255.255.255): ipv4                    // &#x27;109.133.32.252&#x27;</span><br><span class="line">[10.0.0.0, 10.255.255.255] or [192.168.0.0, 192.168.255.255]: localIpv4               // &#x27;10.242.58.8&#x27;</span><br><span class="line">ipv6: ipv6                    // &#x27;8e65:933d:22ee:a232:f1c1:2741:1f10:117c&#x27;</span><br><span class="line">Mac地址: macAddress              // &#x27;43:85:B7:08:10:CA&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="UserAgent"><a href="#UserAgent" class="headerlink" title="UserAgent"></a>UserAgent</h3><blockquote>
+<p>Faker\Provider\UserAgent</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用户代理: userAgent              // &#x27;Mozilla/5.0 (Windows CE) AppleWebKit/5350 (KHTML, like Gecko) Chrome/13.0.888.0 Safari/5350&#x27;</span><br><span class="line">谷歌浏览器: chrome                 // &#x27;Mozilla/5.0 (Macintosh; PPC Mac OS X 10_6_5) AppleWebKit/5312 (KHTML, like Gecko) Chrome/14.0.894.0 Safari/5312&#x27;</span><br><span class="line">火狐浏览器: firefox                // &#x27;Mozilla/5.0 (X11; Linuxi686; rv:7.0) Gecko/20101231 Firefox/3.6&#x27;</span><br><span class="line">safari浏览器: safari                 // &#x27;Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_7_1 rv:3.0; en-US) AppleWebKit/534.11.3 (KHTML, like Gecko) Version/4.0 Safari/534.11.3&#x27;</span><br><span class="line">opera浏览器: opera                  // &#x27;Opera/8.25 (Windows NT 5.1; en-US) Presto/2.9.188 Version/10.00&#x27;</span><br><span class="line">IE: internetExplorer       // &#x27;Mozilla/5.0 (compatible; MSIE 7.0; Windows 98; Win 9x 4.90; Trident/3.0)&#x27;</span><br><span class="line">Mac processor: macProcessor           // &#x27;Intel&#x27;, &#x27;PPC&#x27;, &#x27;U; Intel&#x27;, &#x27;U; PPC&#x27;</span><br><span class="line">Linux processor: linuxProcessor       // &#x27;i686&#x27;, &#x27;x86_64&#x27;</span><br><span class="line">windows系统版本: windowsPlatformToken  // Windows NT 6.2</span><br><span class="line">Mac系统版本: macPlatformToken  // Macintosh; Intel Mac OS X 10_6_3</span><br><span class="line">Linux系统版本: linuxPlatformToken // X11; Linux x86_64</span><br></pre></td></tr></table></figure>
+<h3 id="Payment"><a href="#Payment" class="headerlink" title="Payment"></a>Payment</h3><blockquote>
+<p>Faker\Provider\Payment</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">银行（仅zh_CN）: bank      // 中国建设银行</span><br><span class="line">信用卡类型: creditCardType          // &#x27;MasterCard&#x27;</span><br><span class="line">信用卡卡号: creditCardNumber        // &#x27;4485480221084675&#x27;</span><br><span class="line">信用卡截止日期: creditCardExpirationDate // 04/13</span><br><span class="line">信用卡截止日期（字符串）: creditCardExpirationDateString // &#x27;04/13&#x27;</span><br><span class="line">信用卡基本信息 array(类型,卡号,申请人姓名,截止日期): creditCardDetails       // array(&#x27;MasterCard&#x27;, &#x27;4485480221084675&#x27;, &#x27;Aleksander Nowak&#x27;, &#x27;04/13&#x27;)</span><br><span class="line">// Generates a random IBAN. Set $countryCode to null for a random country</span><br><span class="line">IBAN: iban($countryCode)      // &#x27;IT31A8497112740YZ575DJ28BP4&#x27;</span><br><span class="line">SWIFT/BIC: swiftBicNumber          // &#x27;RZTIAT22263&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Color"><a href="#Color" class="headerlink" title="Color"></a>Color</h3><blockquote>
+<p>Faker\Provider\Color</p>
+</blockquote>
+<p>safeColorName、colorName支持zh_CN</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hexcolor               // &#x27;#fa3cc2&#x27;</span><br><span class="line">*safeHexColor          // &#x27;#ff0044&#x27;</span><br><span class="line">rgbcolor               // &#x27;0,255,122&#x27;</span><br><span class="line">rgbColorAsArray        // array(0,255,122)</span><br><span class="line">rgbCssColor            // &#x27;rgb(0,255,122)&#x27;</span><br><span class="line">*rgbaCssColor           // &#x27;rgba(0,255,122,0.8)&#x27;</span><br><span class="line">safeColorName          // &#x27;fuchsia&#x27;</span><br><span class="line">colorName              // &#x27;Gainsbor&#x27;</span><br><span class="line">hslColor               // &#x27;340,50,20&#x27;</span><br><span class="line">hslColorAsArray        // array(340,50,20)</span><br></pre></td></tr></table></figure>
+<h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><blockquote>
+<p>Faker\Provider\File</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">文件扩展名: fileExtension          // &#x27;avi&#x27;</span><br><span class="line">文件类型（媒体类型）： mimeType               // &#x27;video/x-msvideo&#x27;</span><br><span class="line">// Copy a random file from the source to the target directory and returns the fullpath or filename</span><br><span class="line">file($sourceDir = &#x27;/tmp&#x27;, $targetDir = &#x27;/tmp&#x27;) // &#x27;/path/to/targetDir/13b73edae8443990be1aa8f1a483bc27.jpg&#x27;</span><br><span class="line">file($sourceDir, $targetDir, false) // &#x27;13b73edae8443990be1aa8f1a483bc27.jpg&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h3><blockquote>
+<p>Faker\Provider\Image</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// Image generation provided by LoremPixel (http://lorempixel.com/)</span><br><span class="line">imageUrl($width = 640, $height = 480) // &#x27;http://lorempixel.com/640/480/&#x27;</span><br><span class="line">imageUrl($width, $height, &#x27;cats&#x27;)     // &#x27;http://lorempixel.com/800/600/cats/&#x27;</span><br><span class="line">imageUrl($width, $height, &#x27;cats&#x27;, true, &#x27;Faker&#x27;) // &#x27;http://lorempixel.com/800/400/cats/Faker&#x27;</span><br><span class="line">imageUrl($width, $height, &#x27;cats&#x27;, true, &#x27;Faker&#x27;, true) // &#x27;http://lorempixel.com/gray/800/400/cats/Faker/&#x27; Monochrome image</span><br><span class="line">image($dir = &#x27;/tmp&#x27;, $width = 640, $height = 480) // &#x27;/tmp/13b73edae8443990be1aa8f1a483bc27.jpg&#x27;</span><br><span class="line">image($dir, $width, $height, &#x27;cats&#x27;)  // &#x27;tmp/13b73edae8443990be1aa8f1a483bc27.jpg&#x27; it&#x27;s a cat!</span><br><span class="line">image($dir, $width, $height, &#x27;cats&#x27;, false) // &#x27;13b73edae8443990be1aa8f1a483bc27.jpg&#x27; it&#x27;s a filename without path</span><br><span class="line">image($dir, $width, $height, &#x27;cats&#x27;, true, false) // it&#x27;s a no randomize images (default: `true`)</span><br><span class="line">image($dir, $width, $height, &#x27;cats&#x27;, true, true, &#x27;Faker&#x27;) // &#x27;tmp/13b73edae8443990be1aa8f1a483bc27.jpg&#x27; it&#x27;s a cat with &#x27;Faker&#x27; text. Default, `null`.</span><br></pre></td></tr></table></figure>
+<h3 id="Uuid"><a href="#Uuid" class="headerlink" title="Uuid"></a>Uuid</h3><blockquote>
+<p>Faker\Provider\Uuid</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uuid                   // &#x27;7e57d004-2b97-0e7a-b45f-5387367791cd&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Barcode"><a href="#Barcode" class="headerlink" title="Barcode"></a>Barcode</h3><blockquote>
+<p>Faker\Provider\Barcode</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EAN码（标准版）: ean13          // &#x27;4006381333931&#x27;</span><br><span class="line">EAN码（缩短版）: ean8           // &#x27;73513537&#x27;</span><br><span class="line">ISBN（2007年后新版）: isbn13         // &#x27;9790404436093&#x27;</span><br><span class="line">ISBN: isbn10         // &#x27;4881416324&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h3><blockquote>
+<p>Faker\Provider\Miscellaneous</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">布尔值, 可以设定返回的概率, 区间[1, 100]: boolean // false</span><br><span class="line">	boolean($chanceOfGettingTrue = 50) // true</span><br><span class="line">随机MD5: md5           // &#x27;de99a620c50f2990e87144735cd357e7&#x27;</span><br><span class="line">随机sha1: sha1          // &#x27;f08e7f04ca1a413807ebc47551a40a20a0b4de5c&#x27;</span><br><span class="line">随机sha256: sha256        // &#x27;0061e4c60dac5c1d82db0135a42e00c89ae3a333e7c26485321f24348c7e98a5&#x27;</span><br><span class="line">随机locale: locale        // en_UK</span><br><span class="line">国家二字代码: countryCode   // UK</span><br><span class="line">国家三字代码: countryISOAlpha3</span><br><span class="line">语言: languageCode  // en</span><br><span class="line">货币代码: currencyCode  // EUR</span><br><span class="line">Emoji: emoji         // 😁</span><br></pre></td></tr></table></figure>
+<h3 id="Biased"><a href="#Biased" class="headerlink" title="Biased"></a>Biased</h3><blockquote>
+<p>Faker\Provider\Biased</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// get a random number between 10 and 20,</span><br><span class="line">// with more chances to be close to 20</span><br><span class="line">biasedNumberBetween($min = 10, $max = 20, $function = &#x27;sqrt&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="HtmlLorem"><a href="#HtmlLorem" class="headerlink" title="HtmlLorem"></a>HtmlLorem</h3><blockquote>
+<p>Faker\Provider\HtmlLorem</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Generate HTML document which is no more than 2 levels deep, and no more than 3 elements wide at any level.</span><br><span class="line">randomHtml(2,3)   // &lt;html&gt;&lt;head&gt;&lt;title&gt;Aut illo dolorem et accusantium eum.&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;form action=&quot;example.com&quot; method=&quot;POST&quot;&gt;&lt;label for=&quot;username&quot;&gt;sequi&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;username&quot;&gt;&lt;label for=&quot;password&quot;&gt;et&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;&lt;/form&gt;&lt;b&gt;Id aut saepe non mollitia voluptas voluptas.&lt;/b&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;tr&gt;Non consequatur.&lt;/tr&gt;&lt;tr&gt;Incidunt est.&lt;/tr&gt;&lt;tr&gt;Aut voluptatem.&lt;/tr&gt;&lt;tr&gt;Officia voluptas rerum quo.&lt;/tr&gt;&lt;tr&gt;Asperiores similique.&lt;/tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Sapiente dolorum dolorem sint laboriosam commodi qui.&lt;/td&gt;&lt;td&gt;Commodi nihil nesciunt eveniet quo repudiandae.&lt;/td&gt;&lt;td&gt;Voluptates explicabo numquam distinctio necessitatibus repellat.&lt;/td&gt;&lt;td&gt;Provident ut doloremque nam eum modi aspernatur.&lt;/td&gt;&lt;td&gt;Iusto inventore.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Animi nihil ratione id mollitia libero ipsa quia tempore.&lt;/td&gt;&lt;td&gt;Velit est officia et aut tenetur dolorem sed mollitia expedita.&lt;/td&gt;&lt;td&gt;Modi modi repudiandae pariatur voluptas rerum ea incidunt non molestiae eligendi eos deleniti.&lt;/td&gt;&lt;td&gt;Exercitationem voluptatibus dolor est iste quod molestiae.&lt;/td&gt;&lt;td&gt;Quia reiciendis.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Inventore impedit exercitationem voluptatibus rerum cupiditate.&lt;/td&gt;&lt;td&gt;Qui.&lt;/td&gt;&lt;td&gt;Aliquam.&lt;/td&gt;&lt;td&gt;Autem nihil aut et.&lt;/td&gt;&lt;td&gt;Dolor ut quia error.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Enim facilis iusto earum et minus rerum assumenda quis quia.&lt;/td&gt;&lt;td&gt;Reprehenderit ut sapiente occaecati voluptatum dolor voluptatem vitae qui velit.&lt;/td&gt;&lt;td&gt;Quod fugiat non.&lt;/td&gt;&lt;td&gt;Sunt nobis totam mollitia sed nesciunt est deleniti cumque.&lt;/td&gt;&lt;td&gt;Repudiandae quo.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Modi dicta libero quisquam doloremque qui autem.&lt;/td&gt;&lt;td&gt;Voluptatem aliquid saepe laudantium facere eos sunt dolor.&lt;/td&gt;&lt;td&gt;Est eos quis laboriosam officia expedita repellendus quia natus.&lt;/td&gt;&lt;td&gt;Et neque delectus quod fugit enim repudiandae qui.&lt;/td&gt;&lt;td&gt;Fugit soluta sit facilis facere repellat culpa magni voluptatem maiores tempora.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Enim dolores doloremque.&lt;/td&gt;&lt;td&gt;Assumenda voluptatem eum perferendis exercitationem.&lt;/td&gt;&lt;td&gt;Quasi in fugit deserunt ea perferendis sunt nemo consequatur dolorum soluta.&lt;/td&gt;&lt;td&gt;Maxime repellat qui numquam voluptatem est modi.&lt;/td&gt;&lt;td&gt;Alias rerum rerum hic hic eveniet.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Tempore voluptatem.&lt;/td&gt;&lt;td&gt;Eaque.&lt;/td&gt;&lt;td&gt;Et sit quas fugit iusto.&lt;/td&gt;&lt;td&gt;Nemo nihil rerum dignissimos et esse.&lt;/td&gt;&lt;td&gt;Repudiandae ipsum numquam.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nemo sunt quia.&lt;/td&gt;&lt;td&gt;Sint tempore est neque ducimus harum sed.&lt;/td&gt;&lt;td&gt;Dicta placeat atque libero nihil.&lt;/td&gt;&lt;td&gt;Et qui aperiam temporibus facilis eum.&lt;/td&gt;&lt;td&gt;Ut dolores qui enim et maiores nesciunt.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Dolorum totam sint debitis saepe laborum.&lt;/td&gt;&lt;td&gt;Quidem corrupti ea.&lt;/td&gt;&lt;td&gt;Cum voluptas quod.&lt;/td&gt;&lt;td&gt;Possimus consequatur quasi dolorem ut et.&lt;/td&gt;&lt;td&gt;Et velit non hic labore repudiandae quis.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/tags/">标签</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/niufei16/blog.git">项目</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#install"><span class="toc-number">1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Base"><span class="toc-number">3.1.</span> <span class="toc-text">Base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lorem"><span class="toc-number">3.2.</span> <span class="toc-text">Lorem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Person"><span class="toc-number">3.3.</span> <span class="toc-text">Person</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Address"><span class="toc-number">3.4.</span> <span class="toc-text">Address</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PhoneNumber"><span class="toc-number">3.5.</span> <span class="toc-text">PhoneNumber</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Company"><span class="toc-number">3.6.</span> <span class="toc-text">Company</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Text"><span class="toc-number">3.7.</span> <span class="toc-text">Text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DateTime"><span class="toc-number">3.8.</span> <span class="toc-text">DateTime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Internet"><span class="toc-number">3.9.</span> <span class="toc-text">Internet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UserAgent"><span class="toc-number">3.10.</span> <span class="toc-text">UserAgent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Payment"><span class="toc-number">3.11.</span> <span class="toc-text">Payment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color"><span class="toc-number">3.12.</span> <span class="toc-text">Color</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File"><span class="toc-number">3.13.</span> <span class="toc-text">File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image"><span class="toc-number">3.14.</span> <span class="toc-text">Image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Uuid"><span class="toc-number">3.15.</span> <span class="toc-text">Uuid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Barcode"><span class="toc-number">3.16.</span> <span class="toc-text">Barcode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Miscellaneous"><span class="toc-number">3.17.</span> <span class="toc-text">Miscellaneous</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Biased"><span class="toc-number">3.18.</span> <span class="toc-text">Biased</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HtmlLorem"><span class="toc-number">3.19.</span> <span class="toc-text">HtmlLorem</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&text=Faker 使用总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&is_video=false&description=Faker 使用总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Faker 使用总结&body=Check out this article: https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&title=Faker 使用总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&name=Faker 使用总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://niufei16.github.io/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/&t=Faker 使用总结"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    niuf
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/tags/">标签</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/niufei16/blog.git">项目</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/blog/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

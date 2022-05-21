@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="从IP的traceroute(Windows为tracert)说起。 例子一：12.23.4.712345678910111213141516171819202122232425$ tracert 12.23.4.7通过最多 30 个跃点跟踪到 12.23.4.7 的路由  1    &lt;1 毫秒   &lt;1 毫秒   &lt;1 毫秒 192.168.31.1  2     1 ms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="确定IP地理位置的2个例子">
+<meta property="og:url" content="https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/index.html">
+<meta property="og:site_name" content="niuf">
+<meta property="og:description" content="从IP的traceroute(Windows为tracert)说起。 例子一：12.23.4.712345678910111213141516171819202122232425$ tracert 12.23.4.7通过最多 30 个跃点跟踪到 12.23.4.7 的路由  1    &lt;1 毫秒   &lt;1 毫秒   &lt;1 毫秒 192.168.31.1  2     1 ms">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-16T13:24:40.000Z">
+<meta property="article:modified_time" content="2022-05-21T08:31:18.905Z">
+<meta property="article:author" content="niuf">
+<meta property="article:tag" content="IPv4">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>确定IP地理位置的2个例子</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/blog/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/blog/true" title="niuf" type="application/atom+xml" />
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/tags/">标签</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/niufei16/blog.git">项目</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/blog/2021/05/22/Faker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/blog/2021/05/16/%E7%94%B5%E8%84%91%E5%B8%B8%E7%94%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&text=确定IP地理位置的2个例子"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&is_video=false&description=确定IP地理位置的2个例子"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=确定IP地理位置的2个例子&body=Check out this article: https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&name=确定IP地理位置的2个例子&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&t=确定IP地理位置的2个例子"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%E4%B8%80%EF%BC%9A12-23-4-7"><span class="toc-number">1.</span> <span class="toc-text">例子一：12.23.4.7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%E4%BA%8C%EF%BC%9A13-229-188-59"><span class="toc-number">2.</span> <span class="toc-text">例子二：13.229.188.59</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        确定IP地理位置的2个例子
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">niuf</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-16T13:24:40.000Z" itemprop="datePublished">2021-05-16</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/blog/tags/IPv4/" rel="tag">IPv4</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>从IP的traceroute(Windows为tracert)说起。</p>
+<h4 id="例子一：12-23-4-7"><a href="#例子一：12-23-4-7" class="headerlink" title="例子一：12.23.4.7"></a>例子一：12.23.4.7</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tracert 12.23.4.7</span></span><br><span class="line"></span><br><span class="line">通过最多 30 个跃点跟踪到 12.23.4.7 的路由</span><br><span class="line"></span><br><span class="line">  1    &lt;1 毫秒   &lt;1 毫秒   &lt;1 毫秒 192.168.31.1</span><br><span class="line">  2     1 ms    &lt;1 毫秒   &lt;1 毫秒 192.168.18.1</span><br><span class="line">  3     4 ms     5 ms     2 ms  100.74.0.1</span><br><span class="line">  4     *        2 ms     2 ms  dns73.online.tj.cn [117.8.159.73]</span><br><span class="line">  5     *        *        *     请求超时。</span><br><span class="line">  6    37 ms    34 ms    34 ms  219.158.101.173</span><br><span class="line">  7    35 ms    43 ms    34 ms  219.158.19.66</span><br><span class="line">  8     *       37 ms    39 ms  219.158.20.222</span><br><span class="line">  9   200 ms   198 ms   198 ms  219.158.98.50</span><br><span class="line"> 10   545 ms     *      545 ms  la2ca21crs.ip.att.net [12.122.128.182]</span><br><span class="line"> 11   545 ms   545 ms   545 ms  la2ca21crs.ip.att.net [12.122.128.182]</span><br><span class="line"> 12   541 ms   542 ms     *     12.123.30.49</span><br><span class="line"> 13   610 ms   613 ms   609 ms  12.123.30.50</span><br><span class="line"> 14     *        *      616 ms  slkut21crs.ip.att.net [12.122.1.186]</span><br><span class="line"> 15     *      617 ms     *     dvmco22crs.ip.att.net [12.122.28.45]</span><br><span class="line"> 16   615 ms     *      613 ms  cgcil21crs.ip.att.net [12.122.28.78]</span><br><span class="line"> 17     *        *      609 ms  cgcil22crs.ip.att.net [12.122.2.54]</span><br><span class="line"> 18     *      616 ms     *     n54ny21crs.ip.att.net [12.122.2.238]</span><br><span class="line"> 19   604 ms   601 ms   603 ms  cr85.n54ny.ip.att.net [12.122.115.46]</span><br><span class="line"> 20     *        *        *     请求超时。</span><br><span class="line"> 21     *        *        *     请求超时。</span><br></pre></td></tr></table></figure>
+<p>第10跳 12.122.128.182 的host为 la2ca21crs.ip.att.net，分析该host中的关键字la2ca可知该IP在美国加利福尼亚州(ca)的城市洛杉矶(la)，第14跳 12.122.1.186 的host为 slkut21crs.ip.att.net，分析关键字slkut可知为美国犹他州(ut)的城市盐湖城(slk)，最后断在了美国纽约州(ny)。</p>
+<h4 id="例子二：13-229-188-59"><a href="#例子二：13-229-188-59" class="headerlink" title="例子二：13.229.188.59"></a>例子二：13.229.188.59</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tracert 13.229.188.59</span></span><br><span class="line"></span><br><span class="line">通过最多 30 个跃点跟踪</span><br><span class="line">到 www.github.com [13.229.188.59] 的路由:</span><br><span class="line"></span><br><span class="line">  1    &lt;1 毫秒   &lt;1 毫秒   &lt;1 毫秒 192.168.31.1</span><br><span class="line">  2    &lt;1 毫秒   &lt;1 毫秒    6 ms  192.168.18.1</span><br><span class="line">  3     2 ms     2 ms     2 ms  100.74.0.1</span><br><span class="line">  4     3 ms     3 ms     3 ms  dns53.online.tj.cn [117.8.157.53]</span><br><span class="line">  5     4 ms     4 ms     3 ms  dns21.online.tj.cn [117.8.222.21]</span><br><span class="line">  6    22 ms    23 ms    21 ms  219.158.114.97</span><br><span class="line">  7    75 ms    71 ms    72 ms  219.158.19.82</span><br><span class="line">  8    39 ms    46 ms    40 ms  219.158.19.77</span><br><span class="line">  9   216 ms   215 ms   195 ms  219.158.40.178</span><br><span class="line"> 10   178 ms   195 ms   196 ms  ae-4.r31.tokyjp05.jp.bb.gin.ntt.net [129.250.3.57]</span><br><span class="line"> 11   271 ms   290 ms   306 ms  ae-4.r23.sngpsi07.sg.bb.gin.ntt.net [129.250.2.242]</span><br><span class="line"> 12   270 ms   265 ms   249 ms  ae-1.r01.sngpsi07.sg.bb.gin.ntt.net [129.250.4.94]</span><br><span class="line"> 13   281 ms   292 ms   263 ms  ae-1.amazon.sngpsi07.sg.bb.gin.ntt.net [116.51.18.166]</span><br><span class="line"> 14     *        *        *     请求超时。</span><br><span class="line"> 15   396 ms   415 ms   396 ms  52.93.11.81</span><br><span class="line"> 16     *        *        *     请求超时。</span><br><span class="line"> 17     *        *        *     请求超时。</span><br><span class="line"> 18   285 ms   281 ms   278 ms  203.83.223.27</span><br><span class="line"> 19     *        *        *     请求超时。</span><br><span class="line"> 20     *        *        *     请求超时。</span><br><span class="line"> 21     *        *        *     请求超时。</span><br><span class="line"> 22     *        *        *     请求超时。</span><br><span class="line"> 23     *        *        *     请求超时。</span><br><span class="line"> 24     *        *        *     请求超时。</span><br><span class="line"> 25   270 ms   258 ms   241 ms  www.github.com [13.229.188.59]</span><br><span class="line"></span><br><span class="line">跟踪完成。</span><br></pre></td></tr></table></figure>
+<p>第10跳 129.250.3.57 的host为 ae-4.r31.tokyjp05.jp.bb.gin.ntt.net，分析该host中的关键字tokyjp可知该IP在日本东京(jp)的城市东京(toky)，第13跳 116.51.18.166 的host为 ae-1.amazon.sngpsi07.sg.bb.gin.ntt.net，分析该host中的关键字sngpsi可知该IP在新加坡(sngp)，同时从该host中的amazon猜测此IP可能是机房的接入口。<br>最后综合其他信息可判断13.229.188.59是在新加坡。</p>
+<p>host里关键字的一般规律是：</p>
+<ul>
+<li>二字代码（国家、州、城市）</li>
+<li>三字代码（所在城市的机场代码、胡乱拼凑的三字城市代码）</li>
+<li>五字代码</li>
+<li>六字代码</li>
+<li>其他(随便写的一些城市代码)</li>
+</ul>
+<p>大部分时候凭借上下IP地理位置和对关键字的猜测基本可以确定IP的地理位置</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/tags/">标签</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/niufei16/blog.git">项目</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%E4%B8%80%EF%BC%9A12-23-4-7"><span class="toc-number">1.</span> <span class="toc-text">例子一：12.23.4.7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%E4%BA%8C%EF%BC%9A13-229-188-59"><span class="toc-number">2.</span> <span class="toc-text">例子二：13.229.188.59</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&text=确定IP地理位置的2个例子"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&is_video=false&description=确定IP地理位置的2个例子"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=确定IP地理位置的2个例子&body=Check out this article: https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&title=确定IP地理位置的2个例子"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&name=确定IP地理位置的2个例子&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://niufei16.github.io/blog/2021/05/16/%E7%A1%AE%E5%AE%9AIP%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE%E7%9A%842%E4%B8%AA%E4%BE%8B%E5%AD%90/&t=确定IP地理位置的2个例子"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    niuf
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/tags/">标签</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/niufei16/blog.git">项目</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/blog/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
